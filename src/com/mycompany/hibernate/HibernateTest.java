@@ -10,26 +10,21 @@ import java.util.Date;
 public class HibernateTest {
 
     public static void main(String[] args) {
-        UserDetails user = new UserDetails();
-        user.setUserId(1);
-        user.setUserName("First User");
-        user.setJoinedDate(new Date());
-        user.setAddress("First user's address");
-        user.setDescription("Description goes here");
+        UserDetails user1 = new UserDetails();
+        user1.setUserName("First User");
+
+        UserDetails user2 = new UserDetails();
+        user2.setUserName("Second User");
 
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(user);
+        session.save(user1);
+        session.save(user2);
         session.getTransaction().commit();
         session.close();
 
-        session = sessionFactory.openSession();
-        session.beginTransaction();
-        user = session.get(UserDetails.class, 1);
-        System.out.println("UserName retrieved is : "  + user.getUserName());
-        session.getTransaction().commit();
-        session.close();
+
         sessionFactory.close();
     }
 }
