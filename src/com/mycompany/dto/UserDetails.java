@@ -9,8 +9,7 @@ public class UserDetails {
 
     @Id
     private int userId;
-
-    @Transient
+    
     private String userName;
 
     @Temporal(TemporalType.DATE)
